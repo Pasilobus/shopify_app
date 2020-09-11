@@ -22,7 +22,10 @@ module ShopifyApp
 
     def check_shop_known
       @shop = SessionRepository.retrieve_shop_session_by_shopify_domain(current_shopify_domain)
-      redirect_to(shop_login) unless @shop
+      unless @shop
+        response.set_header(ACCESS_TOKEN_REQUIRED_HEADER, 'OFFLINE')
+        head(:unauthorized)
+      end
     end
 
     def shop_login

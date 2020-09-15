@@ -4,9 +4,9 @@ module ShopifyApp
     extend ActiveSupport::Concern
     include ::ShopifyApp::SessionStorage
 
-    included do
-      validates :shopify_domain, presence: true
-    end
+   # included do
+    #  validates :shopify_domain, presence: true
+    #end
 
     class_methods do
       def store(auth_session, user)
